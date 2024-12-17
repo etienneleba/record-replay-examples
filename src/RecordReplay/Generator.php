@@ -57,7 +57,7 @@ class Generator
                 $paramString = '$' . $param->getName();
                 if ($param->hasType()) {
                     $type = $param->getType();
-                    $paramString = ($type->allowsNull() ? '?' : '') . $type . ' ' . $paramString;
+                    $paramString = /*($type->allowsNull() ? '?' : '') .*/ $type . ' ' . $paramString;
                 }
                 if ($param->isDefaultValueAvailable()) {
                     $paramString .= ' = ' . var_export($param->getDefaultValue(), true);
@@ -74,7 +74,7 @@ class Generator
             $returnStatement = 'return';
             if ($method->hasReturnType()) {
                 $type = $method->getReturnType();
-                $returnType = ': ' . ($type->allowsNull() ? '?' : '') . $type;
+                $returnType = ': ' . /*($type->allowsNull() ? '?' : '') .*/ $type;
 
                 if ((string)$type === 'void') {
                     $returnStatement = '';
