@@ -29,7 +29,7 @@ class PostTest extends WebTestCase
 
         $container->set(PostRepository::class, $postRepository);
 
-        $recordReplay->start("./tests/records/test-index-page.json", Mode::RECORD);
+        $recordReplay->start("./tests/records/test-index-page.json", Mode::REPLAY);
 
         $client->request('GET', '/');
 

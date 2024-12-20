@@ -1,1 +1,6 @@
-{"1856a144f883e73cb5e40e648cc2bb3e5c778f73":"N;","9da639ebaab3e9c7c87c77968fc1b72d5b95c782":"O:20:\"App\\Hexa\\Domain\\Room\":3:{s:28:\"\u0000App\\Hexa\\Domain\\Room\u0000isFree\";b:1;s:2:\"id\";s:1:\"1\";s:28:\"\u0000App\\Hexa\\Domain\\Room\u0000number\";s:1:\"1\";}","f9e429c7f82a05d646c001de5636ed0c9c439b46":"N;","74321619c9e4ff62bb1f9f2b7ed373c22851831a":"a:1:{i:0;O:20:\"App\\Hexa\\Domain\\Room\":3:{s:28:\"\u0000App\\Hexa\\Domain\\Room\u0000isFree\";b:0;s:2:\"id\";s:1:\"1\";s:28:\"\u0000App\\Hexa\\Domain\\Room\u0000number\";s:1:\"1\";}}"}
+{
+  "1856a144f883e73cb5e40e648cc2bb3e5c778f73": "N;",
+  "9da639ebaab3e9c7c87c77968fc1b72d5b95c782": "O:20:\"App\\Hexa\\Domain\\Room\":3:{s:28:\"\u0000App\\Hexa\\Domain\\Room\u0000isFree\";b:1;s:2:\"id\";s:1:\"1\";s:28:\"\u0000App\\Hexa\\Domain\\Room\u0000number\";s:1:\"1\";}",
+  "f9e429c7f82a05d646c001de5636ed0c9c439b46": "N;",
+  "74321619c9e4ff62bb1f9f2b7ed373c22851831a": "a:1:{i:0;O:20:\"App\\Hexa\\Domain\\Room\":3:{s:28:\"\u0000App\\Hexa\\Domain\\Room\u0000isFree\";b:0;s:2:\"id\";s:1:\"1\";s:28:\"\u0000App\\Hexa\\Domain\\Room\u0000number\";s:1:\"1\";}}"
+}

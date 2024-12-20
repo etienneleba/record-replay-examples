@@ -37,7 +37,7 @@ class BookARoomTest extends KernelTestCase
             ->setIsFree(true)
             ->build();
 
-        $recordReplay->start('./tests/records/test-that-it-should-book-a-room.json', Mode::RECORD);
+        $recordReplay->start('./tests/records/test-that-it-should-book-a-room.json', Mode::REPLAY);
 
         $postgresRoomRepository->loadSnapshots([$room]);
 
