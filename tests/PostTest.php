@@ -16,6 +16,7 @@ class PostTest extends WebTestCase
         $client = static::createClient();
         $container = $client->getContainer();
 
+        // retrieve the current repository implementation
         $postRepository = $container->get(PostRepository::class);
 
         static::ensureKernelShutdown();
@@ -25,10 +26,13 @@ class PostTest extends WebTestCase
 
         $recordReplay = new RecordReplay();
 
+        // create a proxy around the current repository implementation
         $postRepository = $recordReplay->createProxy($postRepository);
 
+        // override the current repository implementation with the proxy in the container
         $container->set(PostRepository::class, $postRepository);
 
+        // record all the call to any secondary adapters that have been proxied
         $recordReplay->start("./tests/records/test-index-page.json", Mode::REPLAY);
 
         $client->request('GET', '/');

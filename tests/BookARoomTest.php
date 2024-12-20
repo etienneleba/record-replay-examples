@@ -16,20 +16,28 @@ class BookARoomTest extends KernelTestCase
     {
         $container = static::getContainer();
 
+        // retrieve the current repository implementation
         $postgresRoomRepository = $container->get(PostgresRoomRepository::class);
 
         static::ensureKernelShutdown();
 
         $recordReplay = new RecordReplay();
 
+        // create a proxy around the current repository implementation
         /** @var PostgresRoomRepository $postgresRoomRepository */
         $postgresRoomRepository = $recordReplay->createProxy($postgresRoomRepository);
 
         $container = static::getContainer();
 
+        // override the current repository implementation with the proxy in the container
         $container->set(PostgresRoomRepository::class, $postgresRoomRepository);
 
-        // Given the room 1 is free
+        /*
+         * Arrange
+         */
+        // record all the call to any secondary adapters that have been proxied
+        $recordReplay->start('./tests/records/test-that-it-should-book-a-room.json', Mode::REPLAY);
+
         $roomBuilder = new RoomBuilder();
         $roomId = '1';
         $room = $roomBuilder
@@ -37,17 +45,19 @@ class BookARoomTest extends KernelTestCase
             ->setIsFree(true)
             ->build();
 
-        $recordReplay->start('./tests/records/test-that-it-should-book-a-room.json', Mode::REPLAY);
-
         $postgresRoomRepository->loadSnapshots([$room]);
 
-        // When I book the room 1
+        /*
+         * Act
+         */
         $bookARoomCommand = new BookARoomCommand($roomId);
         $bookARoomCommandHandler = new BookARoomCommandHandler($postgresRoomRepository);
 
         $bookARoomCommandHandler($bookARoomCommand);
 
-        // Then the room 1 should not free anymore
+        /*
+         * Assert
+         */
         $rooms = $postgresRoomRepository->getSnapshots();
 
         $expectedRoom = (new RoomBuilder)
